@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style type="text/css">
+        .back {
+  background: #c6de78;
+  background-image: "";
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.div-center {
+  width: 400px;
+  height: 400px;
+  background-color: #459bd8;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  padding: 1em 2em;
+  border-bottom: 2px solid #991818;
+  display: table;
+  border-radius: 5px;
+  box-shadow: 5px;
+}
+
+div.content {
+  display: table-cell;
+  vertical-align: middle;
+}
+/*body {
+  background-image: url('https://png.pngtree.com/background/20210711/original/pngtree-simple-atmospheric-blue-temperature-needle-illustration-background-picture-image_1145791.jpg');
+}*/
+    </style>
+</head>
+<body >
+    <div class="back">
+
+
+  <div class="div-center">
+
+
+    <div class="content">
+
+
+      <h3>Temperature Converter</h3>
+      <hr />
+      <div>
+            <div class="col">
+                <label>Fahrenheit</label>
+                <input type="number" class="form-control"  id="fahrenheit">
+            </div>
+
+            <div class="col">
+                <label>Celsius</label>
+                <input type="number" class="form-control" id="celsius">
+            </div>
+
+            <div class="col">
+                <label>Kelvin</label>
+                <input type="number" class="form-control" id="kelvin">
+            </div>
+            <hr/>
+            <div>
+               <h1 style="text-align: center;  "  id="det"></h1>
+            </div>
+
+      </div>
+      <script>
+        let celsius = document.getElementById('celsius');
+        let fahrenheit = document.getElementById('fahrenheit');
+        let kelvin = document.getElementById('kelvin');
+        function celCheck(val){
+            val = parseInt(val);
+            if(val > 30){
+                document.getElementById("det").innerHTML="&#129397;";
+            }
+            else if(val>0){
+                if(val<15){
+                    document.getElementById("det").innerHTML="&#128556";
+                }
+                else{
+                    document.getElementById("det").innerHTML="&#128512";
+                }
+            }           
+            if(val<0){
+                document.getElementById("det").innerHTML="&#129398;";
+            }
+
+        }
+        celsius.oninput = function () {
+            let f = (parseFloat(celsius.value) * 9) / 5 + 32;
+            fahrenheit.value = parseFloat(f.toFixed(2));
+
+            let k = (parseFloat(celsius.value) + 273.15);
+            kelvin.value = parseFloat(k.toFixed(2));
+            let c = (parseFloat(celsius.value));
+            celCheck(c);
+        }
+        fahrenheit.oninput = function () {
+            let c = ((parseFloat(
+                fahrenheit.value) - 32) * 5) / 9;
+            celsius.value = parseFloat(c.toFixed(2));
+            celCheck(c);
+
+            let k = (parseFloat(
+                fahrenheit.value) - 32) * 5 / 9 + 273.15;
+            kelvin.value = parseFloat(k.toFixed(2));
+        }
+        kelvin.oninput = function () {
+            let f = (parseFloat(
+                kelvin.value) - 273.15) * 9 / 5 + 32;
+            fahrenheit.value = parseFloat(f.toFixed(2));
+
+            let c = (parseFloat(kelvin.value) - 273.15);
+            celsius.value = parseFloat(c.toFixed(2));
+            celCheck(c);
+        }
+        
+        
+    </script>
+
+    </div>
+
+
+    </span>
+  </div>
+</body>
+</html>
